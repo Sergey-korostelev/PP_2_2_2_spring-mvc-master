@@ -8,10 +8,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class CarServiseImpl implements CarServise {
+public class CarServiceImpl implements CarService {
     private final CarDao dao;
 
-    public CarServiseImpl(CarDao dao) {
+    public CarServiceImpl(CarDao dao) {
         this.dao = dao;
     }
 
