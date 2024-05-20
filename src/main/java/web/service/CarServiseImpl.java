@@ -1,13 +1,20 @@
 package web.service;
 
+import org.springframework.stereotype.Service;
 import web.Dao.CarDao;
-import web.Dao.Dao;
 import web.model.Car;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class CarServiseImpl implements CarService{
-    public Dao dao = new CarDao();
+@Service
+public class CarServiseImpl implements CarServise {
+    private final CarDao dao;
+
+    public CarServiseImpl(CarDao dao) {
+        this.dao = dao;
+    }
+
     @Override
     public List<Car> refreshListCar(int count) {
         if (count > 5) return dao.listCar();

@@ -5,15 +5,18 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import web.Dao.CarDao;
-import web.service.CarService;
-import web.service.CarServiseImpl;
+import web.service.CarServise;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 public class HelloController {
+	public final CarServise servise;
+
+	public HelloController(CarServise servise) {
+		this.servise = servise;
+	}
 
 	@GetMapping(value = "/")
 	public String printWelcome(ModelMap model) {
@@ -28,8 +31,7 @@ public class HelloController {
 	@GetMapping(value = "/cars")
 	public String getListCar(@RequestParam("count") int count, Model model) {
 		final int countt = count;
-		CarService service = new CarServiseImpl();
-		model.addAttribute("cars", service.refreshListCar(countt));
+		model.addAttribute("cars", servise.refreshListCar(countt));
 		return "/cars";
 	}
 }
